@@ -1,10 +1,10 @@
 const Hero = () => {
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="text-lg md:text-xl font-semibold">
+      <h2 className="text-xl font-semibold md:text-2xl">
         Bandingkan Sesuatu dengan Bantuan AI
       </h2>
-      <p className="text-xs md:text-sm dark:text-slate-300 text-slate-600 max-w-2xl">
+      <p className="max-w-2xl text-sm md:text-base dark:text-slate-300 text-slate-600">
         Bagi kamu kamu kaum mendang mending yang suka membandingkan sesuatu,{" "}
         <span className="font-semibold text-black dark:text-white">
           Mendang Mending
