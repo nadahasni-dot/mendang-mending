@@ -80,7 +80,7 @@ const Comparison = () => {
         <input
           id="first"
           name="first"
-          className="border-b dark:bg-slate-800 bg-slate-200 rounded-lg border-slate-500 dark:border-sky-500 px-2 py-2 md:py-0.5 w-full md:max-w-40 placeholder:text-sm placeholder:font-normal"
+          className="border-b dark:bg-slate-800 bg-slate-200 rounded-lg border-slate-500 dark:border-sky-500 px-2 py-2 md:py-0.5 w-full md:max-w-40 placeholder:text-sm placeholder:font-normal md:placeholder:-translate-y-1"
           type="text"
           value={data.first}
           onChange={handleChange}
@@ -91,7 +91,7 @@ const Comparison = () => {
         <input
           id="second"
           name="second"
-          className="border-b dark:bg-slate-800 bg-slate-200 rounded-lg border-slate-500 dark:border-sky-500 px-2 py-2 md:py-0.5 w-full md:max-w-40 placeholder:text-sm placeholder:font-normal"
+          className="border-b dark:bg-slate-800 bg-slate-200 rounded-lg border-slate-500 dark:border-sky-500 px-2 py-2 md:py-0.5 w-full md:max-w-40 placeholder:text-sm placeholder:font-normal md:placeholder:-translate-y-1"
           type="text"
           value={data.second}
           onChange={handleChange}
