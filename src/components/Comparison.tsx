@@ -21,6 +21,7 @@ const Comparison = () => {
     isError,
     isLoading,
     mutate,
+    reset,
   } = useMutation({
     mutationKey: ["ASK_GEMINI"],
     mutationFn: askGemini,
@@ -55,45 +56,60 @@ const Comparison = () => {
     });
   };
 
+  const resetForm = () => {
+    setData({
+      first: "",
+      second: "",
+    });
+    reset();
+  };
+
   return (
     <div>
-      <h3 className="md:text-base text-sm font-semibold">
+      <h3 className="text-sm font-semibold md:text-base">
         <span className="text-slate-600 dark:text-slate-400">
           Mulai Mendang Mendingnya
         </span>{" "}
         🤔
       </h3>
       <form
-        className="text-md md:text-xl mt-4 font-semibold flex flex-col md:flex-row gap-4"
+        className="flex flex-col gap-4 mt-4 font-semibold text-md md:text-xl md:flex-row"
         onSubmit={handleSubmit}
       >
         <label htmlFor="first">Jadi Mending</label>
         <input
           id="first"
           name="first"
-          className="border-b dark:bg-slate-800 bg-slate-200 rounded-lg border-slate-500 dark:border-sky-500 px-2 py-0.5 w-full md:max-w-40"
+          className="border-b dark:bg-slate-800 bg-slate-200 rounded-lg border-slate-500 dark:border-sky-500 px-2 py-2 md:py-0.5 w-full md:max-w-40 placeholder:text-sm placeholder:font-normal"
           type="text"
           value={data.first}
           onChange={handleChange}
           required
+          placeholder="Makan Sate"
         />
         <label htmlFor="second">atau mending</label>
         <input
           id="second"
           name="second"
-          className="border-b dark:bg-slate-800 bg-slate-200 rounded-lg border-slate-500 dark:border-sky-500 px-2 py-0.5 w-full md:max-w-40"
+          className="border-b dark:bg-slate-800 bg-slate-200 rounded-lg border-slate-500 dark:border-sky-500 px-2 py-2 md:py-0.5 w-full md:max-w-40 placeholder:text-sm placeholder:font-normal"
           type="text"
           value={data.second}
           onChange={handleChange}
           required
+          placeholder="Makan Bakso"
         />
         <p>?</p>
-        <Button disabled={isLoading} type="submit">
+        <Button disabled={isLoading || result !== undefined} type="submit">
           Tanya Gemini
         </Button>
+        {result && (
+          <Button disabled={isLoading} onClick={resetForm} variant="secondary">
+            Tanya Lagi
+          </Button>
+        )}
       </form>
       {isLoading && (
-        <div className="md:px-10 py-10 flex flex-col gap-5">
+        <div className="flex flex-col gap-5 py-10 md:px-10">
           <p className="text-sm text-center">
             Menunggu respon{" "}
             <span className="font-semibold underline">GOOGLE Gemini Ai</span>...
@@ -134,7 +150,9 @@ const Comparison = () => {
           </p>
         </Card>
       )}
-      {isError && <div>Ups terjadi error!</div>}
+      {isError && (
+        <Card className="p-5 mt-10 text-center">Ups terjadi error 😭</Card>
+      )}
     </div>
   );
 };

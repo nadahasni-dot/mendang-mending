@@ -8,14 +8,18 @@ export const askGemini = async ({
   first,
   second,
 }: AskGeminiProps): Promise<string> => {
-  const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  try {
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-  const prompt = `Lebih mending ${first} atau ${second}?`;
+    const prompt = `Lebih mending ${first} atau ${second}?`;
 
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
 
-  const text = response.text();
-  return text;
+    const text = response.text();
+    return text;
+  } catch (error) {
+    throw new Error("Ups terjadi kesalahan");
+  }
 };
